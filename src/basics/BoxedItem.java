@@ -19,25 +19,25 @@ public class BoxedItem implements Sellable, Transportable {
 	@Override
 	public int weight() {
 		// TODO Auto-generated method stub
-		return 0;
+		return weight;
 	}
 
 	@Override
 	public boolean isHazardous() {
 		// TODO Auto-generated method stub
-		return false;
+		return haz;
 	}
 
 	@Override
 	public String description() {
 		// TODO Auto-generated method stub
-		return null;
+		return descript;
 	}
 
 	@Override
 	public int listPrice() {
 		// TODO Auto-generated method stub
-		return 0;
+		return price;
 	}
 
 	@Override
