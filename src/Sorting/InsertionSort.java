@@ -1,6 +1,9 @@
 package Sorting;
 
 public class InsertionSort {
+	private static int count = 0;
+	private int count2 = 0;
+	
 	public static void insertionSort(char[] data) {
 		int n = data.length;
  		
@@ -15,4 +18,5 @@ public class InsertionSort {
 			data[j] = current;
 		}
 	}
+
 }

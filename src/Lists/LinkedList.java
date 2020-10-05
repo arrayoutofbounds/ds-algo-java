@@ -1,6 +1,6 @@
 package Lists;
 
-public class LinkedList<E> {
+public class LinkedList<E> implements Cloneable{
 	private static class Node<E>{
 		private E element;
 		private Node<E> next;
@@ -78,5 +78,38 @@ public class LinkedList<E> {
 		
 		list.removeFirst();
 		System.out.println(list.first());
+	}
+	
+	@Override
+	public boolean equals(Object o ) {
+		if( o == null) return false;
+		if(getClass() != o.getClass()) return false;
+		LinkedList other = (LinkedList) o;
+		if(size != other.size) return false;
+		Node walkA = head;
+		Node walkB = other.head; // this class can access private vars of other LinkedList objects
+		while(walkA != null) {
+			if(!walkA.getElement().equals(walkB.getElement())) return false;
+			walkA = walkA.getNext();
+			walkB = walkB.getNext();
+		}
+		return true;
+	}
+	
+	@Override
+	public LinkedList<E> clone() throws CloneNotSupportedException {
+		LinkedList<E> other = (LinkedList<E>) super.clone();// clones the current obj in a shallow way
+		if(this.size > 0) {
+			other.head = new Node<>(head.getElement(), null);
+			Node<E> walk = head.getNext();
+			Node<E> otherTail = other.head;
+			while(walk != null) {
+				Node<E> newest = new Node<>(walk.getElement(), null);
+				otherTail.setNext(newest);
+				otherTail = newest;
+				walk = walk.getNext();
+			}
+		}
+		return other;
 	}
 }
