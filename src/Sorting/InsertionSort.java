@@ -20,3 +20,18 @@ public class InsertionSort {
 	}
 
 }
+
+
+// i code this to remind myself how to do insertion sort
+
+//int[] arr = {1,2};
+//for(int i = 1; i<arr.length;i++) {
+//	int j = i-1;
+//	int current = arr[i];
+//	
+//	while(j >= 0 && arr[j] > current) {
+//		arr[i] = arr[j];
+//		i--;
+//	}
+//	arr[j] = current;
+//}
