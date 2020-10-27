@@ -2,8 +2,10 @@ package tree;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Queue;
 
 import Lists.Positional.Position;
+import queue.LinkedQueue;
 
 public abstract class AbstractTree<E> implements Tree<E> {
 	public boolean isInternal(Position<E> p) throws IllegalArgumentException {
@@ -83,6 +85,31 @@ public abstract class AbstractTree<E> implements Tree<E> {
         List<Position<E>> snapshot = new ArrayList<>();
         if (!isEmpty()) {
             postOrderSubtree(root(), snapshot);
+        }
+        
+        return snapshot;
+    }
+    
+    /**
+     * Returns an iterable collection of positions of the tree in breadth-first order.
+     * 
+     * @return  
+     */
+    public Iterable<Position<E>> breathFirst() {
+        List<Position<E>> snapshot = new ArrayList<>();
+        
+        if (!isEmpty()) {
+            LinkedQueue<Position<E>> fringe = new LinkedQueue<Position<E>>();
+            fringe.enqueue(root());
+            
+            while (!fringe.isEmpty()) {
+                Position<E> position = fringe.dequeue();
+                snapshot.add(position);
+                
+                for (Position<E> child : children(position)) {
+                    fringe.enqueue(child);
+                }
+            }
         }
         
         return snapshot;
